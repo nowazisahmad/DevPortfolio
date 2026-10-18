@@ -3,8 +3,10 @@ import { useRef, useState } from "react";
 const SpotlightCard = ({
   children,
   className = "",
-  spotlightColor = "rgba(59, 130, 246, 0.12)",
-  darkSpotlightColor = "rgba(99, 102, 241, 0.18)",
+  spotlightColor = "rgba(59, 130, 246, 0.08)",
+  darkSpotlightColor = "rgba(99, 102, 241, 0.12)",
+  borderColor = "rgba(59, 130, 246, 0.5)",
+  darkBorderColor = "rgba(129, 140, 248, 0.6)",
 }) => {
   const cardRef = useRef(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -28,23 +30,51 @@ const SpotlightCard = ({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative overflow-hidden group ${className}`}
+      className={`relative overflow-hidden group transition-all duration-300 ${className}`}
     >
-      {/* Light mode cursor spotlight */}
+      {/* Dynamic Cursor Border Beam - Light Mode */}
       <div
-        className="pointer-events-none absolute -inset-px transition-opacity duration-300 dark:hidden z-10"
+        className="pointer-events-none absolute -inset-[1px] rounded-[inherit] transition-opacity duration-300 dark:hidden z-10"
         style={{
           opacity,
-          background: `radial-gradient(350px circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 65%)`,
+          background: `radial-gradient(280px circle at ${position.x}px ${position.y}px, ${borderColor}, transparent 70%)`,
+          mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+          WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+          maskComposite: "exclude",
+          WebkitMaskComposite: "xor",
+          padding: "1px",
         }}
       />
 
-      {/* Dark mode cursor spotlight */}
+      {/* Dynamic Cursor Border Beam - Dark Mode */}
       <div
-        className="pointer-events-none absolute -inset-px transition-opacity duration-300 hidden dark:block z-10"
+        className="pointer-events-none absolute -inset-[1px] rounded-[inherit] transition-opacity duration-300 hidden dark:block z-10"
         style={{
           opacity,
-          background: `radial-gradient(350px circle at ${position.x}px ${position.y}px, ${darkSpotlightColor}, transparent 65%)`,
+          background: `radial-gradient(280px circle at ${position.x}px ${position.y}px, ${darkBorderColor}, transparent 70%)`,
+          mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+          WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+          maskComposite: "exclude",
+          WebkitMaskComposite: "xor",
+          padding: "1px",
+        }}
+      />
+
+      {/* Surface Ambient Sheen - Light Mode */}
+      <div
+        className="pointer-events-none absolute inset-0 transition-opacity duration-300 dark:hidden z-0"
+        style={{
+          opacity,
+          background: `radial-gradient(400px circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 60%)`,
+        }}
+      />
+
+      {/* Surface Ambient Sheen - Dark Mode */}
+      <div
+        className="pointer-events-none absolute inset-0 transition-opacity duration-300 hidden dark:block z-0"
+        style={{
+          opacity,
+          background: `radial-gradient(400px circle at ${position.x}px ${position.y}px, ${darkSpotlightColor}, transparent 60%)`,
         }}
       />
 
