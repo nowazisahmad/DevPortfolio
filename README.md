@@ -1,4 +1,4 @@
-# practice-portfolio-ejp-14
+# DevPortfolio
 
 A modern, responsive personal developer portfolio web application built with **React 19**, **Vite**, and **Tailwind CSS v4**.
 
