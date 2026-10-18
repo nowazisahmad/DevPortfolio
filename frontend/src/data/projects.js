@@ -5,82 +5,73 @@ import project3 from "../assets/projects/project3.png";
 const projects = [
   {
     id: 1,
-    title: "Developer Portfolio & Showcase",
+    title: "Bazar-Dor (বাজার দর) — Daily Commodity Price Tracker",
     image: project1,
-    category: "Frontend Web Application",
+    category: "Fullstack Next.js Web App",
     technologies: [
+      "Next.js (App Router)",
       "React",
       "Tailwind CSS",
-      "JavaScript (ES6+)",
-      "React Router",
-      "Vite"
+      "HeroUI",
+      "Better Auth",
+      "REST API",
+      "Iconify"
     ],
     description:
-      "A modern, high-performance personal portfolio built for showcasing frontend engineering skills, interactive projects, and a responsive resume viewer. Features smooth section navigation, responsive mobile menu, dynamic routing, and ATS-friendly printable resume.",
+      "A modern, responsive commodity price tracking web application for Bangladesh. Enables users to view real-time market prices of essential daily goods (Rice, Lentils, Oil, Vegetables, Fish, Meat, Eggs & Milk, Spices), track price trends against yesterday and last week, and examine localized price breakdowns across major markets and divisions.",
     live: "https://bazar-dor-ashen.vercel.app/",
     github: "https://github.com/nowazisahmad/Bazar-Dor",
     challenges: [
-      "Building a smooth active-section scroll spy with route-aware navigation",
-      "Crafting an ATS-compatible, print-optimized resume stylesheet in React",
-      "Ensuring fluid responsiveness across ultra-wide monitors down to small mobile viewports"
-    ],
-    future: [
-      "Dark / Light theme mode toggle with localStorage persistence",
-      "Interactive contact form integration via EmailJS / Web3Forms",
-      "Markdown-powered tech blog section with syntax highlighting"
+      "Designing responsive multi-category filtering with localized Bengali typography and numeric price datasets",
+      "Structuring dynamic price fluctuation metrics (today vs. yesterday vs. last month percentage changes) across regional markets",
+      "Implementing secure user authentication flow with Better Auth and real-time REST API data integration"
     ],
   },
   {
     id: 2,
-    title: "TechGear - Modern Tech Store",
+    title: "FitLog — Workout Tracker & Gym Companion",
     image: project2,
-    category: "E-Commerce Web App",
+    category: "Fitness & Health Web Application",
     technologies: [
+      "Next.js (App Router)",
+      "TypeScript",
       "React",
       "Tailwind CSS",
-      "JavaScript",
+      "DaisyUI",
       "Context API",
-      "REST API"
+      "React Toastify"
     ],
     description:
-      "A responsive, full-featured electronics and tech gadgets web application. Includes instant product category filtering, price range slider, real-time shopping cart drawer with quantity adjustments, and simulated checkout flow.",
+      "A sleek, dark-themed workout tracking web application designed for fitness enthusiasts. Features a comprehensive library of 12+ lifts covering every major muscle group, dynamic exercise sorting by duration and calories, an interactive dual-tab 'Today's Plan' and 'Saved Workouts' manager, and real-time toast feedback.",
     live: "https://fit-log-eight-sepia.vercel.app/",
     github: "https://github.com/nowazisahmad/Fit-Log",
     challenges: [
-      "Global cart state management with React Context without unnecessary re-renders",
-      "Smooth slide-over modal drawer implementation for cart and mobile filters",
-      "Instant multi-criteria client-side search and category filtering"
-    ],
-    future: [
-      "Integration with Stripe payment gateway test API",
-      "User authentication and order history dashboard",
-      "Wishlist system with localStorage persistence"
+      "Architecting global workout state management using React Context API without unnecessary component re-renders",
+      "Building a dual-tab system (Today's Plan & Saved Workouts) with dynamic sorting by duration, difficulty, and calories burned",
+      "Implementing responsive mobile drawer navigation and real-time interactive toast feedback"
     ],
   },
   {
     id: 3,
-    title: "TaskFlow - Agile Kanban Board",
+    title: "DevStack — Interactive Developer Tech Stack Builder",
     image: project3,
-    category: "Productivity & SaaS",
+    category: "Developer Tools & Productivity",
     technologies: [
       "React",
+      "TypeScript",
       "Tailwind CSS",
-      "JavaScript (ES6+)",
-      "LocalStorage"
+      "Vite",
+      "React Icons",
+      "React Toastify"
     ],
     description:
-      "An intuitive task management and productivity dashboard inspired by Trello and Jira. Supports custom task creation, priority color-coding, multi-stage workflow columns (Backlog, In Progress, Completed), and search indexing.",
+      "A modern, interactive web application designed to help developers compare, select, and manage their ideal technology stack. Users can browse an extensive catalog of frontend frameworks, backend runtimes, databases, and DevOps tools, add them to their stack in a dynamic sticky sidebar, and manage their selections with instant toast feedback.",
     live: "https://dev-stack-gules-six.vercel.app/",
     github: "https://github.com/nowazisahmad/DevStack",
     challenges: [
-      "Seamless task state transitions across columns with proper data immutability",
-      "Persistent state synchronization with browser LocalStorage",
-      "Clean UI component design adhering to accessibility standards"
-    ],
-    future: [
-      "Drag and drop reordering using @dnd-kit/core",
-      "Firebase Firestore integration for multi-device real-time sync",
-      "Subtasks checklist and due-date notification system"
+      "Creating an interactive stack builder with real-time dynamic stack calculation and sticky sidebar synchronization",
+      "Implementing robust type safety across technical categories and tool metadata using TypeScript",
+      "Delivering a responsive, accessible layout with smooth micro-interactions, gradient badges, and toast notifications"
     ],
   },
 ];
