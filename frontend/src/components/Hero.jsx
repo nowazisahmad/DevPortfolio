@@ -2,22 +2,26 @@ import { Link } from "react-router-dom";
 import { HiDocumentText, HiArrowRight, HiSparkles } from "react-icons/hi";
 import { FaReact, FaJsSquare, FaGitAlt } from "react-icons/fa";
 import { SiTailwindcss, SiVite } from "react-icons/si";
+import SpotlightCard from "./SpotlightCard";
 
 const Hero = () => {
   return (
     <section
       id="home"
-      className="relative min-h-[88vh] flex items-center justify-center pt-24 pb-12 px-6 md:px-12 max-w-7xl mx-auto overflow-hidden transition-colors duration-300"
+      className="relative min-h-[90vh] flex items-center justify-center pt-24 pb-16 px-6 md:px-12 max-w-7xl mx-auto overflow-hidden transition-colors duration-300"
     >
+      {/* Ambient Grid Background Layer */}
+      <div className="absolute inset-0 bg-ambient-grid mask-radial-faded pointer-events-none -z-10 opacity-70 dark:opacity-50" />
+
       {/* Background Decorative Glows */}
-      <div className="absolute top-20 left-1/4 w-96 h-96 bg-blue-400/10 dark:bg-blue-500/15 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
-      <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-indigo-400/10 dark:bg-indigo-500/15 rounded-full blur-3xl pointer-events-none -z-10"></div>
+      <div className="absolute top-20 left-1/4 w-96 h-96 bg-blue-500/10 dark:bg-blue-500/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
+      <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-indigo-500/10 dark:bg-indigo-500/20 rounded-full blur-3xl pointer-events-none -z-10"></div>
 
       <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         {/* Left Column: Introductions & CTAs */}
         <div className="lg:col-span-7 text-left space-y-6">
           {/* Status Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200/80 dark:border-blue-800/80 text-blue-700 dark:text-blue-300 text-xs sm:text-sm font-semibold shadow-xs">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50/90 dark:bg-blue-950/70 backdrop-blur-xs border border-blue-200/80 dark:border-blue-800/80 text-blue-700 dark:text-blue-300 text-xs sm:text-sm font-semibold shadow-xs">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
             <span>Available for Hire • Fresher Web Developer</span>
           </div>
@@ -59,7 +63,7 @@ const Hero = () => {
             {/* Explore Projects Button */}
             <a
               href="#projects"
-              className="inline-flex items-center justify-center gap-2 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 border border-gray-300 dark:border-gray-800 hover:border-blue-500 dark:hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 px-6 py-3.5 rounded-xl font-semibold shadow-xs hover:shadow-md transition-all duration-300 text-sm sm:text-base hover:bg-blue-50/40 dark:hover:bg-gray-800/60"
+              className="inline-flex items-center justify-center gap-2 bg-white/90 dark:bg-gray-900/90 backdrop-blur-xs text-gray-800 dark:text-gray-200 border border-gray-300 dark:border-gray-800 hover:border-blue-500 dark:hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 px-6 py-3.5 rounded-xl font-semibold shadow-xs hover:shadow-md transition-all duration-300 text-sm sm:text-base hover:bg-blue-50/40 dark:hover:bg-gray-800"
             >
               <span>Explore Projects</span>
               <HiArrowRight className="text-base" />
@@ -99,10 +103,9 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Right Column: Code Showcase & Visual Card */}
+        {/* Right Column: Code Showcase with Interactive Spotlight */}
         <div className="lg:col-span-5 relative">
-          {/* Visual Code Box */}
-          <div className="relative bg-gray-900 dark:bg-gray-950 rounded-2xl shadow-2xl border border-gray-800 dark:border-gray-800/80 overflow-hidden text-left hover:border-blue-500/40 transition-colors duration-300">
+          <SpotlightCard className="rounded-2xl shadow-2xl border border-gray-800 dark:border-gray-800/80 bg-gray-900 dark:bg-gray-950">
             {/* Terminal Window Header */}
             <div className="bg-gray-800/90 dark:bg-gray-900 px-4 py-3 flex items-center justify-between border-b border-gray-700/60 dark:border-gray-800">
               <div className="flex items-center gap-2">
@@ -153,7 +156,7 @@ const Hero = () => {
                 <span className="text-emerald-400">&#10003;</span> Ready for entry-level challenges
               </div>
             </div>
-          </div>
+          </SpotlightCard>
 
           {/* Floating Pill Badges */}
           <div className="absolute -bottom-4 -left-4 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border border-gray-200 dark:border-gray-800 rounded-xl p-3 shadow-lg flex items-center gap-3">

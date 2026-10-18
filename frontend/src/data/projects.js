@@ -8,6 +8,8 @@ const projects = [
     title: "Bazar-Dor (বাজার দর) — Daily Commodity Price Tracker",
     image: project1,
     category: "Fullstack Next.js Web App",
+    filterGroup: "nextjs",
+    tags: ["Next.js", "Fullstack", "React"],
     technologies: [
       "Next.js (App Router)",
       "React",
@@ -32,6 +34,8 @@ const projects = [
     title: "FitLog — Workout Tracker & Gym Companion",
     image: project2,
     category: "Fitness & Health Web Application",
+    filterGroup: "nextjs",
+    tags: ["Next.js", "TypeScript", "React"],
     technologies: [
       "Next.js (App Router)",
       "TypeScript",
@@ -56,6 +60,8 @@ const projects = [
     title: "DevStack — Interactive Developer Tech Stack Builder",
     image: project3,
     category: "Developer Tools & Productivity",
+    filterGroup: "tools",
+    tags: ["React", "TypeScript", "Tools"],
     technologies: [
       "React",
       "TypeScript",

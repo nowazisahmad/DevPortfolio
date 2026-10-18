@@ -1,16 +1,45 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import projects from "../data/projects";
 import { HiExternalLink, HiArrowRight, HiOutlineSparkles } from "react-icons/hi";
 import { FaGithub } from "react-icons/fa";
+import SpotlightCard from "./SpotlightCard";
+
+const filterCategories = [
+  { id: "all", name: "All Projects" },
+  { id: "nextjs", name: "Next.js & Fullstack" },
+  { id: "typescript", name: "React & TypeScript" },
+  { id: "tools", name: "Tools & Productivity" },
+];
 
 const Projects = () => {
+  const [activeFilter, setActiveFilter] = useState("all");
+
+  const filteredProjects = projects.filter((project) => {
+    if (activeFilter === "all") return true;
+    if (activeFilter === "nextjs") {
+      return project.filterGroup === "nextjs" || project.technologies.some((t) => t.includes("Next.js"));
+    }
+    if (activeFilter === "typescript") {
+      return project.technologies.some((t) => t.includes("TypeScript"));
+    }
+    if (activeFilter === "tools") {
+      return project.filterGroup === "tools" || project.tags?.includes("Tools");
+    }
+    return true;
+  });
+
   return (
     <section
       id="projects"
-      className="py-24 px-6 md:px-12 max-w-7xl mx-auto transition-colors duration-300"
+      className="py-24 px-6 md:px-12 max-w-7xl mx-auto transition-colors duration-300 relative"
     >
+      {/* Background Decorative Ambient Glows */}
+      <div className="absolute top-1/3 -left-32 w-80 h-80 bg-blue-500/10 dark:bg-blue-600/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+      <div className="absolute bottom-1/4 -right-32 w-80 h-80 bg-indigo-500/10 dark:bg-indigo-600/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+
       {/* Section Header */}
-      <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+      <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200/60 dark:border-blue-800/80 text-blue-700 dark:text-blue-300 text-xs font-semibold uppercase tracking-wider">
           <HiOutlineSparkles className="text-blue-600 dark:text-blue-400 text-sm" />
           <span>My Portfolio Projects</span>
@@ -21,16 +50,55 @@ const Projects = () => {
         </h2>
 
         <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400">
-          Explore real-world web applications I built to solve practical problems, demonstrating clean code, modern UI/UX design, and responsive frontend architectures.
+          Explore real-world web applications I built to solve practical problems, featuring clean code, modern UI/UX design, and responsive frontend architectures.
         </p>
       </div>
 
-      {/* Projects Grid */}
+      {/* Category Filter Tabs */}
+      <div className="flex flex-wrap items-center justify-center gap-2.5 mb-12">
+        {filterCategories.map((tab) => {
+          const isSelected = activeFilter === tab.id;
+          const count =
+            tab.id === "all"
+              ? projects.length
+              : projects.filter((p) => {
+                  if (tab.id === "nextjs") return p.technologies.some((t) => t.includes("Next.js"));
+                  if (tab.id === "typescript") return p.technologies.some((t) => t.includes("TypeScript"));
+                  if (tab.id === "tools") return p.filterGroup === "tools" || p.tags?.includes("Tools");
+                  return false;
+                }).length;
+
+          return (
+            <button
+              key={tab.id}
+              onClick={() => setActiveFilter(tab.id)}
+              className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer ${
+                isSelected
+                  ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md shadow-blue-500/25 scale-105"
+                  : "bg-white dark:bg-gray-900 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-800 hover:border-blue-400 dark:hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800"
+              }`}
+            >
+              <span>{tab.name}</span>
+              <span
+                className={`text-[11px] px-2 py-0.5 rounded-full font-bold ${
+                  isSelected
+                    ? "bg-white/20 text-white"
+                    : "bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400"
+                }`}
+              >
+                {count}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Projects Grid with Interactive Spotlight */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {projects.map((project) => (
-          <div
+        {filteredProjects.map((project) => (
+          <SpotlightCard
             key={project.id}
-            className="group bg-white dark:bg-gray-900 rounded-2xl border border-gray-200/90 dark:border-gray-800 shadow-sm hover:shadow-2xl hover:border-blue-400 dark:hover:border-blue-500/80 transition-all duration-300 flex flex-col overflow-hidden transform hover:-translate-y-1"
+            className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200/90 dark:border-gray-800 shadow-sm hover:shadow-2xl hover:border-blue-400 dark:hover:border-blue-500/80 transition-all duration-300 flex flex-col justify-between transform hover:-translate-y-1.5"
           >
             {/* Card Thumbnail / Image Container */}
             <div className="relative aspect-video w-full overflow-hidden bg-gray-100 dark:bg-gray-800 border-b border-gray-100 dark:border-gray-800">
@@ -41,14 +109,14 @@ const Projects = () => {
                 loading="lazy"
               />
               {project.category && (
-                <span className="absolute top-3 left-3 bg-gray-900/80 dark:bg-gray-950/90 backdrop-blur-xs text-white text-[11px] font-medium px-2.5 py-1 rounded-md shadow-xs border border-white/10">
+                <span className="absolute top-3 left-3 bg-gray-900/80 dark:bg-gray-950/90 backdrop-blur-xs text-white text-[11px] font-medium px-2.5 py-1 rounded-md shadow-xs border border-white/10 z-20">
                   {project.category}
                 </span>
               )}
             </div>
 
             {/* Card Body */}
-            <div className="p-6 flex flex-col flex-grow justify-between space-y-4">
+            <div className="p-6 flex flex-col flex-grow justify-between space-y-4 relative z-20">
               <div className="space-y-2.5">
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                   {project.title}
@@ -114,12 +182,12 @@ const Projects = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </SpotlightCard>
         ))}
       </div>
 
       {/* Bottom Github Note */}
-      <div className="mt-12 text-center">
+      <div className="mt-14 text-center">
         <p className="text-sm text-gray-500 dark:text-gray-400">
           Want to see more code and experiments? Check out my{" "}
           <a
