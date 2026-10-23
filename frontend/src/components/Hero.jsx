@@ -31,10 +31,8 @@ const Hero = () => {
             <p className="text-gray-600 dark:text-gray-300 font-medium text-lg">
               Hello, I am a passionate
             </p>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white tracking-tight leading-tight">
-              Frontend &amp;{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 dark:from-blue-400 dark:via-indigo-300 dark:to-cyan-400">
-                React Developer
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white tracking-tight leading-tight">Full Stack <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 dark:from-blue-400 dark:via-indigo-300 dark:to-cyan-400">
+                Web Developer
               </span>
             </h1>
           </div>

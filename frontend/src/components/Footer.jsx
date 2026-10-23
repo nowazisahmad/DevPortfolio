@@ -18,10 +18,10 @@ const Footer = () => {
               className="text-xl font-extrabold text-gray-900 dark:text-white flex items-center gap-2"
             >
               <span className="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-mono text-sm shadow-xs">
-                D
+                N
               </span>
               <span>
-                DevPortfolio<span className="text-blue-600 dark:text-blue-400">.</span>
+                Nowazis Ahmad Usama<span className="text-blue-600 dark:text-blue-400"></span>
               </span>
             </Link>
             <p className="text-sm text-gray-500 dark:text-gray-400 max-w-md leading-relaxed">
